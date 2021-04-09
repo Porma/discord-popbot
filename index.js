@@ -56,14 +56,16 @@ function pop(channels) {
     let target = targetChannels[Math.floor(Math.random() * targetChannels.length)];
     console.log("Selected target channel: " + target.name);
 
-    // TODO: make it leave after sound finishes playing
     target.join()
       .then(connection => {
         console.log("P O P");
-        connection.play('./pop.wav');
-        setTimeout(() => {
-          target.leave();
-        }, 600);
+        let dispatcher = connection.play('./pop.wav', { volume: 0.75 });
+
+        // leave voice channel after playing sound
+        dispatcher.on('speaking', speaking => {
+          if (!speaking) 
+            target.leave();
+        });
       });
   }
 
