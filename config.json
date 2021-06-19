@@ -1,0 +1,6 @@
+{
+    "bot_token": "",
+    "guild_id": "",
+    "timer_min": 300000,
+    "timer_max": 1800000
+}

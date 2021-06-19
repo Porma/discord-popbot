@@ -3,12 +3,14 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const timerMin = 300000
-const timerMax = 1800000
+const config = require('./config');
+
+const timerMin = config.timer_min;
+const timerMax = config.timer_max;
 
 const soundsDir = './sounds';
 
-const guild = ""
+const guild = config.guild_id;
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -100,4 +102,4 @@ function pop(channels, sounds) {
 }
 
 
-client.login('');
+client.login(config.bot_token);
